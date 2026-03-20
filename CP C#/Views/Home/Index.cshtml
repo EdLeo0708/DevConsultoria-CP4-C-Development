@@ -1,0 +1,45 @@
+﻿@model List<CP_C_.Models.Problema>
+
+    <h2>Consultoria de Desenvolvimento</h2>
+
+    <div class="row">
+
+        @foreach (var item in Model)
+{
+        <div class="col-md-4">
+            <div class="card">
+
+                <div class="card-body">
+
+                    <h5>@item.Nome</h5>
+
+                    <p>@item.Descricao</p>
+
+                    <p><b>Tempo:</b> @item.TempoResposta</p>
+
+                    <form method="post" asp-action="Solicitar">
+
+                        <input type="hidden" name="problema" value="@item.Nome" />
+
+                        <input class="form-control" name="nome" placeholder="Seu nome" />
+
+                        <input class="form-control" name="email" placeholder="Email" />
+
+                        <button class="btn btn-primary mt-2">Solicitar</button>
+
+                    </form>
+
+                </div>
+
+            </div>
+        </div>
+}
+
+    </div>
+
+    @if(TempData["msg"] != null)
+{
+    <div class="alert alert-success mt-3">
+        @TempData["msg"]
+    </div>
+}
